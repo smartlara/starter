@@ -1,0 +1,64 @@
+<?php
+
+namespace {{ namespace }};
+
+use DummyFullModelClass;
+use {{ rootNamespace }}Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class {{ class }} extends Controller
+{
+    public function index()
+    {
+        $dummyPluralVariable = DummyModelClass::query()->paginate();
+        return view('index', compact('dummyPluralVariable'));
+    }
+
+    public function create()
+    {
+        $dummyModelVariable = new DummyModelClass();
+
+        return view('create', compact('dummyModelVariable'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([]);
+
+        DummyModelClass::query()->create($request->all());
+
+        return redirect()->route('index')->with([
+            'flash' => ['message' => __("DummyModelTitle has been saved"), "type" => 'success']
+        ]);
+    }
+
+    public function show(DummyModelClass $dummyModelVariable)
+    {
+        return view('show', compact('dummyModelVariable'));
+    }
+
+    public function edit(DummyModelClass ${{ modelVariable }})
+    {
+        return view('edit', compact('dummyModelVariable'));
+    }
+
+    public function update(Request $request, DummyModelClass ${{ modelVariable }})
+    {
+        $request->validate([]);
+
+        $dummyModelVariable->update($request->all());
+
+        return redirect()->route('index')->with([
+            'flash' => ['message' => __("DummyModelTitle has been saved"), "type" => 'success']
+        ]);
+    }
+
+    public function destroy(DummyModelClass ${{ modelVariable }})
+    {
+        $dummyModelVariable->delete();
+
+        return redirect()->route('index')->with([
+            'flash' => ['message' => __("DummyModelTitle has been deleted"), "type" => 'info']
+        ]);
+    }
+}
