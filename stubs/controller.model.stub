@@ -17,7 +17,6 @@ class {{ class }} extends Controller
     public function create()
     {
         $dummyModelVariable = new DummyModelClass();
-
         return view('create', compact('dummyModelVariable'));
     }
 
@@ -37,12 +36,12 @@ class {{ class }} extends Controller
         return view('show', compact('dummyModelVariable'));
     }
 
-    public function edit(DummyModelClass ${{ modelVariable }})
+    public function edit(DummyModelClass $dummyModelVariable)
     {
         return view('edit', compact('dummyModelVariable'));
     }
 
-    public function update(Request $request, DummyModelClass ${{ modelVariable }})
+    public function update(Request $request, DummyModelClass $dummyModelVariable)
     {
         $request->validate([]);
 
@@ -53,7 +52,7 @@ class {{ class }} extends Controller
         ]);
     }
 
-    public function destroy(DummyModelClass ${{ modelVariable }})
+    public function destroy(DummyModelClass $dummyModelVariable)
     {
         $dummyModelVariable->delete();
 
